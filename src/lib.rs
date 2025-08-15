@@ -27,18 +27,29 @@ pub fn run(c: &mut Criterion) {
     generators.reverse();
 
     macro_rules! bench {
-        ($group_name:literal, $test_fn:ident, $expected_output:literal $(, $data:expr)*) => {
+        ($group_name:literal, $test_fn:ident, $expected_output:expr $(, $data:expr)*) => {
             let mut group = c.benchmark_group($group_name);
+            let expected_output = $expected_output;
 
             // Ensure the actual output is correct for each generator
             for (package, generator) in generators {
                 let mut output = generator.output();
                 generator.$test_fn(&mut output, $($data),*);
-                assert_eq!(
-                    String::from_utf8_lossy(output.as_bytes()),
-                    $expected_output,
-                    "{package} generated the wrong output"
-                );
+                let mut is_correct = false;
+                let output_string = String::from_utf8_lossy(output.as_bytes());
+                for expected in expected_output {
+                    if output_string == expected {
+                        is_correct = true;
+                        break;
+                    }
+                }
+                if !is_correct {
+                    panic!(
+                        "{package} generated the wrong output:\n===\n{}\n===\nexpected one of:\n===\n{}\n===",
+                        output_string.replace("\n", "\\n"),
+                        expected_output.map(|string| string.replace("\n", "\\n")).join("\n===\n")
+                    );
+                }
             }
 
             // Run benchmarks
@@ -55,6 +66,52 @@ pub fn run(c: &mut Criterion) {
         };
     }
 
-    bench!("inline text", inline_text, "hello world");
-    bench!("inline variable", inline_variable, "<text>", "<text>");
+    bench!("inline text", inline_text, ["hello world"]);
+    bench!("inline variable", inline_variable, ["<text>"], "<text>");
+    bench!(
+        "extends",
+        extends,
+        [
+            r#"<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>&lt;text></title>
+</head>
+<body>
+    <h1 title="<text>">&lt;text></h1>
+    <p>You're visitor #19!</p>
+</body>
+</html>
+"#,
+            // Oxiplate 0.2
+            r#"<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>&lt;text></title>
+</head>
+<body>
+    <h1 title="&lt;text>">&lt;text></h1>
+    <p>You're visitor #19!</p>
+</body>
+</html>
+"#,
+            // Askama
+            r#"<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>&#60;text&#62;</title>
+</head>
+<body>
+    <h1 title="&#60;text&#62;">&#60;text&#62;</h1>
+    <p>You're visitor #19!</p>
+</body>
+</html>
+"#,
+        ],
+        "<text>",
+        19
+    );
 }

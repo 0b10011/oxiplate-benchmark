@@ -11,6 +11,11 @@ pub trait Generator {
     /// A test of variable output without any logic or static text.
     /// Simply outputs the variable as-is.
     fn inline_variable(&self, output: &mut Self::Output, text: &str);
+
+    /// A benchmark of template extending performance.
+    /// Main page should extend a layout template.
+    /// See latest `oxiplate-*` benchmark for example.
+    fn extends(&self, output: &mut Self::Output, title: &str, visit_count: u64);
 }
 
 pub trait Output: Default {

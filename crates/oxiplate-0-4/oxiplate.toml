@@ -1,0 +1,3 @@
+default_escaper_group = "html"
+
+escaper_groups.html.escaper = "::oxiplate::escapers::html::HtmlEscaper"

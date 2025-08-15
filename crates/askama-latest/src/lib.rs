@@ -12,6 +12,13 @@ struct InlineVariable<'a> {
     text: &'a str,
 }
 
+#[derive(Template)]
+#[template(path = "page.html.askama")]
+struct Extends<'a> {
+    title: &'a str,
+    visitor_count: u64,
+}
+
 impl benchmark::Generator for Generator {
     type Output = String;
 
@@ -29,6 +36,14 @@ impl benchmark::Generator for Generator {
     fn inline_variable(&self, output: &mut Self::Output, text: &str) {
         InlineVariable {
             text,
+        }.render_into(output).unwrap();
+    }
+
+    #[inline]
+    fn extends(&self, output: &mut Self::Output, title: &str, visitor_count: u64) {
+        Extends {
+            title,
+            visitor_count,
         }.render_into(output).unwrap();
     }
 }

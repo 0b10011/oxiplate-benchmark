@@ -1,0 +1,6 @@
+{% extends "layout.html.askama" %}
+
+{% block content -%}
+    <h1 title="{{ title }}">{{ title }}</h1>
+    <p>You're visitor #{{ visitor_count }}!</p>
+{%- endblock %}

@@ -1,0 +1,6 @@
+{% extends "layout.html.oxip" %}
+
+{% block content -%}
+    <h1 title="{{ attr: title }}">{{ text: title }}</h1>
+    <p>You're visitor #{{ text: visitor_count }}!</p>
+{%- endblock %}
