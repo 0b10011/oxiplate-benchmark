@@ -21,6 +21,12 @@ struct Extends<'a> {
     visitor_count: u64,
 }
 
+#[derive(Oxiplate)]
+#[oxiplate_inline(html: "<ul>{% for value in &values %}<li>{{ value }}</li>{% endfor %}</ul>")]
+struct StatementFor<'a> {
+    values: Vec<&'a str>,
+}
+
 impl benchmark::Generator for Generator {
     type Output = String;
 
@@ -46,6 +52,13 @@ impl benchmark::Generator for Generator {
         output.write_str(&format!("{}", Extends {
             title,
             visitor_count,
+        })).unwrap();
+    }
+
+    #[inline]
+    fn statement_for(&self, output: &mut Self::Output, values: Vec<&str>) {
+        output.write_str(&format!("{}", StatementFor {
+            values,
         })).unwrap();
     }
 }

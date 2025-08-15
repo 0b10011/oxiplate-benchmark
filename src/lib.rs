@@ -37,8 +37,8 @@ pub fn run(c: &mut Criterion) {
                 generator.$test_fn(&mut output, $($data),*);
                 let mut is_correct = false;
                 let output_string = String::from_utf8_lossy(output.as_bytes());
-                for expected in expected_output {
-                    if output_string == expected {
+                for expected in &expected_output {
+                    if &output_string == expected {
                         is_correct = true;
                         break;
                     }
@@ -113,5 +113,58 @@ pub fn run(c: &mut Criterion) {
         ],
         "<text>",
         19
+    );
+    bench!(
+        "for 10",
+        statement_for,
+        [format!("<ul>{}</ul>", "<li>hello world</li>".repeat(10))],
+        ["hello world"].into_iter().cycle().take(10).collect()
+    );
+    bench!(
+        "for 10,000",
+        statement_for,
+        [format!(
+            "<ul>{}</ul>",
+            "<li>hello world</li>".repeat(10_000)
+        )],
+        ["hello world"].into_iter().cycle().take(10_000).collect()
+    );
+    bench!(
+        "for 10 disallowed chars",
+        statement_for,
+        [
+            format!(
+                "<ul>{}</ul>",
+                r#"<li>&lt;script>alert("hi")&lt;/script></li>"#.repeat(10)
+            ),
+            format!(
+                "<ul>{}</ul>",
+                r#"<li>&#60;script&#62;alert(&#34;hi&#34;)&#60;/script&#62;</li>"#.repeat(10)
+            ),
+        ],
+        [r#"<script>alert("hi")</script>"#]
+            .into_iter()
+            .cycle()
+            .take(10)
+            .collect()
+    );
+    bench!(
+        "for 10,000 disallowed chars",
+        statement_for,
+        [
+            format!(
+                "<ul>{}</ul>",
+                r#"<li>&lt;script>alert("hi")&lt;/script></li>"#.repeat(10_000)
+            ),
+            format!(
+                "<ul>{}</ul>",
+                r#"<li>&#60;script&#62;alert(&#34;hi&#34;)&#60;/script&#62;</li>"#.repeat(10_000)
+            ),
+        ],
+        [r#"<script>alert("hi")</script>"#]
+            .into_iter()
+            .cycle()
+            .take(10_000)
+            .collect()
     );
 }

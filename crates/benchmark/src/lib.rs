@@ -16,6 +16,9 @@ pub trait Generator {
     /// Main page should extend a layout template.
     /// See latest `oxiplate-*` benchmark for example.
     fn extends(&self, output: &mut Self::Output, title: &str, visit_count: u64);
+
+    /// A benchmark of outputting a loop of strings.
+    fn statement_for(&self, output: &mut Self::Output, values: Vec<&str>);
 }
 
 pub trait Output: Default {

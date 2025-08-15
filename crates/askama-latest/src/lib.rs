@@ -19,6 +19,12 @@ struct Extends<'a> {
     visitor_count: u64,
 }
 
+#[derive(Template)]
+#[template(source = "<ul>{% for value in &values %}<li>{{ value }}</li>{% endfor %}</ul>", ext = "html")]
+struct StatementFor<'a> {
+    values: Vec<&'a str>,
+}
+
 impl benchmark::Generator for Generator {
     type Output = String;
 
@@ -44,6 +50,13 @@ impl benchmark::Generator for Generator {
         Extends {
             title,
             visitor_count,
+        }.render_into(output).unwrap();
+    }
+
+    #[inline]
+    fn statement_for(&self, output: &mut Self::Output, values: Vec<&str>) {
+        StatementFor {
+            values,
         }.render_into(output).unwrap();
     }
 }
