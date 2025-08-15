@@ -1,5 +1,3 @@
-use std::fmt::Write;
-
 use askama::Template;
 
 pub struct Generator;
@@ -24,13 +22,13 @@ impl benchmark::Generator for Generator {
 
     #[inline]
     fn inline_text(&self, output: &mut Self::Output) {
-        output.write_str(&format!("{}", InlineText)).unwrap();
+        InlineText.render_into(output).unwrap();
     }
 
     #[inline]
     fn inline_variable(&self, output: &mut Self::Output, text: &str) {
-        output.write_str(&format!("{}", InlineVariable {
+        InlineVariable {
             text,
-        })).unwrap();
+        }.render_into(output).unwrap();
     }
 }
