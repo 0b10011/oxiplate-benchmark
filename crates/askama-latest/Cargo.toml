@@ -1,0 +1,8 @@
+[package]
+name = "askama-latest"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+askama = "*"
+benchmark = { version = "*", path = "../benchmark" }
