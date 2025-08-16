@@ -3,8 +3,18 @@ use std::hint::black_box;
 use benchmark::Generator;
 use criterion::Criterion;
 
+enum Part {
+    Check,
+    Bench,
+}
+
 /// Run benchmarks against selected packages.
 pub fn run(c: &mut Criterion) {
+    run_part(c, Part::Check);
+    run_part(c, Part::Bench);
+}
+
+fn run_part(c: &mut Criterion, part: Part) {
     let mut generators: [(&str, &dyn Generator<Output = _>); _] = [
         #[cfg(feature = "other-libraries")]
         ("askama-latest", &askama_latest::Generator),
@@ -28,41 +38,45 @@ pub fn run(c: &mut Criterion) {
 
     macro_rules! bench {
         ($group_name:literal, $test_fn:ident, $expected_output:expr $(, $data:expr)*) => {
-            let mut group = c.benchmark_group($group_name);
-            let expected_output = $expected_output;
+            match part {
+                Part::Check => {
+                    let expected_output = $expected_output;
 
-            // Ensure the actual output is correct for each generator
-            for (package, generator) in generators {
-                let mut output = generator.output();
-                generator.$test_fn(&mut output, $($data),*);
-                let mut is_correct = false;
-                let output_string = String::from_utf8_lossy(output.as_bytes());
-                for expected in &expected_output {
-                    if &output_string == expected {
-                        is_correct = true;
-                        break;
+                    for (package, generator) in generators {
+                        let mut output = generator.output();
+                        generator.$test_fn(&mut output, $($data),*);
+                        let mut is_correct = false;
+                        let output_string = String::from_utf8_lossy(output.as_bytes());
+                        for expected in &expected_output {
+                            if &output_string == expected {
+                                is_correct = true;
+                                break;
+                            }
+                        }
+                        if !is_correct {
+                            panic!(
+                                "{package} generated the wrong output:\n===\n{}\n===\nexpected one of:\n===\n{}\n===",
+                                output_string.replace("\n", "\\n"),
+                                expected_output.map(|string| string.replace("\n", "\\n")).join("\n===\n")
+                            );
+                        }
                     }
                 }
-                if !is_correct {
-                    panic!(
-                        "{package} generated the wrong output:\n===\n{}\n===\nexpected one of:\n===\n{}\n===",
-                        output_string.replace("\n", "\\n"),
-                        expected_output.map(|string| string.replace("\n", "\\n")).join("\n===\n")
-                    );
+                Part::Bench => {
+                    let mut group = c.benchmark_group($group_name);
+
+                    for (package, generator) in generators {
+                        group.bench_function(package, |b| {
+                            b.iter(|| {
+                                let mut output = black_box(generator.output());
+                                generator.$test_fn(&mut output, $(black_box($data)),*);
+                            })
+                        });
+                    }
+
+                    drop(group);
                 }
             }
-
-            // Run benchmarks
-            for (package, generator) in generators {
-                group.bench_function(package, |b| {
-                    b.iter(|| {
-                        let mut output = black_box(generator.output());
-                        generator.$test_fn(&mut output, $(black_box($data)),*);
-                    })
-                });
-            }
-
-            drop(group);
         };
     }
 
