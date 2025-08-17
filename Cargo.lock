@@ -358,21 +358,18 @@ checksum = "d6790f58c7ff633d8771f42965289203411a5e5c68388703c06e14f24770b41e"
 
 [[package]]
 name = "oxiplate"
-version = "0.1.0"
+version = "0.1.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "deaa1dd3a247e37bba6b0d5bee1b5f7fb915834ddfad7e229e5d62c1ff44e976"
+checksum = "1e54b47486c30591bcc22fff57c4b7b694a8e6b7588144eb655087d7c359730a"
 dependencies = [
- "nom 7.1.3",
- "proc-macro2",
- "quote",
- "syn",
+ "oxiplate-derive 0.1.12",
 ]
 
 [[package]]
 name = "oxiplate"
-version = "0.2.0"
+version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ece1494c1f1b9bef56616b7c11d3a01884f7a0f9eac2d2618fe5b55d4a4769f"
+checksum = "94e735647dbeaea519ce0aa3414bddf158d3fba3c2bff610a7e13de4a820fa40"
 dependencies = [
  "oxiplate-derive 0.2.8",
 ]
@@ -388,27 +385,27 @@ dependencies = [
 
 [[package]]
 name = "oxiplate"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5dd05e5968669378b7e1c0e4734a50efdc5c8477e03dad9faa08b87b321a2cc9"
+checksum = "bce5ecd1331842063231d56d57b817f8a3a489d4c164b106f5378589f6656b75"
 dependencies = [
  "oxiplate-derive 0.4.1",
 ]
 
 [[package]]
 name = "oxiplate"
-version = "0.5.0"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "94eed81e169ce3e63074c9542665690f7a556ef359aa11f4eadbcd535af4d935"
+checksum = "b2bdd5cc1b278a917965e8f6388d7b60c460cf9ba8bdfcffd305b1bad446f7b6"
 dependencies = [
- "oxiplate-derive 0.5.0",
+ "oxiplate-derive 0.5.1",
 ]
 
 [[package]]
 name = "oxiplate"
-version = "0.6.0"
+version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "267ddcf0e62e176df93a86b7b8e11b36aceacd6710ba81b04d081db490d982c3"
+checksum = "3574b9ea422af35958d33361f857c545ed443f83198006f7d1f1e61641713e80"
 dependencies = [
  "oxiplate-derive 0.6.2",
 ]
@@ -424,12 +421,22 @@ dependencies = [
 
 [[package]]
 name = "oxiplate"
-version = "0.8.0"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ed1be39426e41903a201805b95481180f3596ee443ddada1c44e5ffff59082f1"
+checksum = "5eb4e2a5c36586e8f6bca094a287db02e13f8b2f8ebaede848086f19b9b2db01"
 dependencies = [
  "itoa",
- "oxiplate-derive 0.8.0",
+ "oxiplate-derive 0.8.1",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b5ecb511fd4b7ad1e3451d7c385ee0662f1a84cbe522baadf057c7d91eea9e6"
+dependencies = [
+ "itoa",
+ "oxiplate-derive 0.9.0",
 ]
 
 [[package]]
@@ -437,7 +444,7 @@ name = "oxiplate-0-1"
 version = "0.1.0"
 dependencies = [
  "benchmark",
- "oxiplate 0.1.0",
+ "oxiplate 0.1.12",
 ]
 
 [[package]]
@@ -445,7 +452,7 @@ name = "oxiplate-0-2"
 version = "0.1.0"
 dependencies = [
  "benchmark",
- "oxiplate 0.2.0",
+ "oxiplate 0.2.8",
 ]
 
 [[package]]
@@ -461,7 +468,7 @@ name = "oxiplate-0-4"
 version = "0.1.0"
 dependencies = [
  "benchmark",
- "oxiplate 0.4.0",
+ "oxiplate 0.4.1",
 ]
 
 [[package]]
@@ -469,7 +476,7 @@ name = "oxiplate-0-5"
 version = "0.1.0"
 dependencies = [
  "benchmark",
- "oxiplate 0.5.0",
+ "oxiplate 0.5.1",
 ]
 
 [[package]]
@@ -477,7 +484,7 @@ name = "oxiplate-0-6"
 version = "0.1.0"
 dependencies = [
  "benchmark",
- "oxiplate 0.6.0",
+ "oxiplate 0.6.2",
 ]
 
 [[package]]
@@ -493,7 +500,15 @@ name = "oxiplate-0-8"
 version = "0.1.0"
 dependencies = [
  "benchmark",
- "oxiplate 0.8.0",
+ "oxiplate 0.8.1",
+]
+
+[[package]]
+name = "oxiplate-0-9"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.9.0",
 ]
 
 [[package]]
@@ -511,6 +526,21 @@ dependencies = [
  "oxiplate-0-6",
  "oxiplate-0-7",
  "oxiplate-0-8",
+ "oxiplate-0-9",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.1.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "549ca9e8f2f5aced6a556b1ce42f54f6d6de0f2c8cb0d69f1a5055895485b0a9"
+dependencies = [
+ "nom 7.1.3",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.8.23",
 ]
 
 [[package]]
@@ -525,7 +555,7 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "toml",
+ "toml 0.9.5",
 ]
 
 [[package]]
@@ -540,7 +570,7 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "toml",
+ "toml 0.9.5",
 ]
 
 [[package]]
@@ -555,14 +585,14 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "toml",
+ "toml 0.9.5",
 ]
 
 [[package]]
 name = "oxiplate-derive"
-version = "0.5.0"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "57ff77b036ae4963b73846b9cad212c8760493a5d14319df02171754f9e7e806"
+checksum = "c77abdbb1bc5227f4957452e99938e1d37a91d1c2ee45734006dc7da30eeee35"
 dependencies = [
  "nom 8.0.0",
  "nom-language",
@@ -570,7 +600,7 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "toml",
+ "toml 0.9.5",
 ]
 
 [[package]]
@@ -585,7 +615,7 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "toml",
+ "toml 0.9.5",
 ]
 
 [[package]]
@@ -600,14 +630,14 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "toml",
+ "toml 0.9.5",
 ]
 
 [[package]]
 name = "oxiplate-derive"
-version = "0.8.0"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f7dd28e6abe481411554e18bb7d7c789c79c9bbaa837b12debbcc7ecec5c80fb"
+checksum = "de6903db587613a76d1c4c80fbb262a0b5bb30c57fad802260675f7c39989a59"
 dependencies = [
  "nom 8.0.0",
  "nom-language",
@@ -615,7 +645,22 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "toml",
+ "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bbb1605b8491c63cd12df5b30e2877af1e22f03b87fadadee7ea194b1152d50e"
+dependencies = [
+ "nom 8.0.0",
+ "nom-language",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.9.5",
 ]
 
 [[package]]
@@ -654,9 +699,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.97"
+version = "1.0.101"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d61789d7719defeb74ea5fe81f2fdfdbd28a803847077cecce2ff14e1472f6f1"
+checksum = "89ae43fd86e4158d6db51ad8e2b80f313af9cc74f5c0e03ccb87de09998732de"
 dependencies = [
  "unicode-ident",
 ]
@@ -780,6 +825,15 @@ dependencies = [
 
 [[package]]
 name = "serde_spanned"
+version = "0.6.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bf41e0cfaf7226dca15e8197172c295a782857fcb97fad1808a166870dee75a3"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "serde_spanned"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "40734c41988f7306bb04f0ecf60ec0f3f1caa34290e4e8ea471dcd3346483b83"
@@ -789,9 +843,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.105"
+version = "2.0.106"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7bc3fcb250e53458e712715cf74285c1f889686520d79294a9ef3bd7aa1fc619"
+checksum = "ede7c438028d4436d71104916910f5bb611972c5cfd7f89b8300a8186e6fada6"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -810,17 +864,38 @@ dependencies = [
 
 [[package]]
 name = "toml"
+version = "0.8.23"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc1beb996b9d83529a9e75c17a1686767d148d70663143c7854d8b4a09ced362"
+dependencies = [
+ "serde",
+ "serde_spanned 0.6.9",
+ "toml_datetime 0.6.11",
+ "toml_edit",
+]
+
+[[package]]
+name = "toml"
 version = "0.9.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "75129e1dc5000bfbaa9fee9d1b21f974f9fbad9daec557a521ee6e080825f6e8"
 dependencies = [
  "indexmap",
  "serde",
- "serde_spanned",
- "toml_datetime",
+ "serde_spanned 1.0.0",
+ "toml_datetime 0.7.0",
  "toml_parser",
  "toml_writer",
  "winnow",
+]
+
+[[package]]
+name = "toml_datetime"
+version = "0.6.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "22cddaf88f4fbc13c51aebbf5f8eceb5c7c5a9da2ac40a13519eb5b0a0e8f11c"
+dependencies = [
+ "serde",
 ]
 
 [[package]]
@@ -833,6 +908,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "toml_edit"
+version = "0.22.27"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "41fe8c660ae4257887cf66394862d21dbca4a6ddd26f04a3560410406a2f819a"
+dependencies = [
+ "indexmap",
+ "serde",
+ "serde_spanned 0.6.9",
+ "toml_datetime 0.6.11",
+ "toml_write",
+ "winnow",
+]
+
+[[package]]
 name = "toml_parser"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -840,6 +929,12 @@ checksum = "b551886f449aa90d4fe2bdaa9f4a2577ad2dde302c61ecf262d80b116db95c10"
 dependencies = [
  "winnow",
 ]
+
+[[package]]
+name = "toml_write"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d99f8c9a7727884afe522e9bd5edbfc91a3312b36a77b5fb8926e4c31a41801"
 
 [[package]]
 name = "toml_writer"

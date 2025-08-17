@@ -28,11 +28,13 @@ fn run_part(c: &mut Criterion, part: Part) {
         ("oxiplate-0.4", &oxiplate_0_4::Generator),
         #[cfg(feature = "all-packages")]
         ("oxiplate-0.5", &oxiplate_0_5::Generator),
-        #[cfg(feature = "recent")]
+        #[cfg(feature = "all-packages")]
         ("oxiplate-0.6", &oxiplate_0_6::Generator),
         #[cfg(feature = "recent")]
         ("oxiplate-0.7", &oxiplate_0_7::Generator),
+        #[cfg(feature = "recent")]
         ("oxiplate-0.8", &oxiplate_0_8::Generator),
+        ("oxiplate-0.9", &oxiplate_0_8::Generator),
     ];
     generators.reverse();
 
