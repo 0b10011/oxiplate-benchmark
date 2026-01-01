@@ -10,33 +10,47 @@ enum Part {
 
 /// Run benchmarks against selected packages.
 pub fn run(c: &mut Criterion) {
-    run_part(c, Part::Check);
-    run_part(c, Part::Bench);
+    let to_skip = run_part(c, Part::Check, vec![]);
+    run_part(c, Part::Bench, to_skip);
 }
 
-fn run_part(c: &mut Criterion, part: Part) {
+fn run_part(c: &mut Criterion, part: Part, to_skip: Vec<(&str, &str)>) -> Vec<(&'static str, &'static str)> {
     let mut generators: [(&str, &dyn Generator<Output = _>); _] = [
         #[cfg(feature = "other-libraries")]
         ("askama-latest", &askama_latest::Generator),
         #[cfg(feature = "all-packages")]
-        ("oxiplate-0.1", &oxiplate_0_1::Generator),
+        ("oxiplate-0.01", &oxiplate_0_1::Generator),
         #[cfg(feature = "all-packages")]
-        ("oxiplate-0.2", &oxiplate_0_2::Generator),
+        ("oxiplate-0.02", &oxiplate_0_2::Generator),
         #[cfg(feature = "all-packages")]
-        ("oxiplate-0.3", &oxiplate_0_3::Generator),
+        ("oxiplate-0.03", &oxiplate_0_3::Generator),
         #[cfg(feature = "all-packages")]
-        ("oxiplate-0.4", &oxiplate_0_4::Generator),
+        ("oxiplate-0.04", &oxiplate_0_4::Generator),
         #[cfg(feature = "all-packages")]
-        ("oxiplate-0.5", &oxiplate_0_5::Generator),
+        ("oxiplate-0.05", &oxiplate_0_5::Generator),
         #[cfg(feature = "all-packages")]
-        ("oxiplate-0.6", &oxiplate_0_6::Generator),
+        ("oxiplate-0.06", &oxiplate_0_6::Generator),
+        #[cfg(feature = "all-packages")]
+        ("oxiplate-0.07", &oxiplate_0_7::Generator),
+        #[cfg(feature = "all-packages")]
+        ("oxiplate-0.08", &oxiplate_0_8::Generator),
+        #[cfg(feature = "all-packages")]
+        ("oxiplate-0.09", &oxiplate_0_9::Generator),
+        #[cfg(feature = "all-packages")]
+        ("oxiplate-0.10", &oxiplate_0_10::Generator),
+        #[cfg(feature = "all-packages")]
+        ("oxiplate-0.11", &oxiplate_0_11::Generator),
+        #[cfg(feature = "all-packages")]
+        ("oxiplate-0.12", &oxiplate_0_12::Generator),
         #[cfg(feature = "recent")]
-        ("oxiplate-0.7", &oxiplate_0_7::Generator),
+        ("oxiplate-0.13", &oxiplate_0_13::Generator),
         #[cfg(feature = "recent")]
-        ("oxiplate-0.8", &oxiplate_0_8::Generator),
-        ("oxiplate-0.9", &oxiplate_0_8::Generator),
+        ("oxiplate-0.14", &oxiplate_0_14::Generator),
+        ("oxiplate-0.15", &oxiplate_0_15::Generator),
     ];
     generators.reverse();
+
+    let mut skipped = vec![];
 
     macro_rules! bench {
         ($group_name:literal, $test_fn:ident, $expected_output:expr $(, $data:expr)*) => {
@@ -46,7 +60,19 @@ fn run_part(c: &mut Criterion, part: Part) {
 
                     for (package, generator) in generators {
                         let mut output = generator.output();
-                        generator.$test_fn(&mut output, $($data),*);
+                        match generator.$test_fn(&mut output, $($data),*) {
+                            benchmark::Result::Done => (),
+                            benchmark::Result::ToDo => {
+                                println!("`{}` is not written yet for {package}", $group_name);
+                                skipped.push((package, $group_name));
+                                continue;
+                            },
+                            benchmark::Result::Unimplemented => {
+                                println!("`{}` is not implemented for {package}", $group_name);
+                                skipped.push((package, $group_name));
+                                continue;
+                            },
+                        }
                         let mut is_correct = false;
                         let output_string = String::from_utf8_lossy(output.as_bytes());
                         for expected in &expected_output {
@@ -57,7 +83,8 @@ fn run_part(c: &mut Criterion, part: Part) {
                         }
                         if !is_correct {
                             panic!(
-                                "{package} generated the wrong output:\n===\n{}\n===\nexpected one of:\n===\n{}\n===",
+                                "{package} generated the wrong output for `{}`:\n===\n{}\n===\nexpected one of:\n===\n{}\n===",
+                                $group_name,
                                 output_string.replace("\n", "\\n"),
                                 expected_output.map(|string| string.replace("\n", "\\n")).join("\n===\n")
                             );
@@ -68,6 +95,11 @@ fn run_part(c: &mut Criterion, part: Part) {
                     let mut group = c.benchmark_group($group_name);
 
                     for (package, generator) in generators {
+                        if to_skip.contains(&(package, $group_name)) {
+                            println!("`{}` skipped for `{package}`", $group_name);
+                            continue;
+                        }
+
                         group.bench_function(package, |b| {
                             b.iter(|| {
                                 let mut output = black_box(generator.output());
@@ -183,4 +215,18 @@ fn run_part(c: &mut Criterion, part: Part) {
             .take(10_000)
             .collect()
     );
+    bench!(
+        "filter lower",
+        filter_lower,
+        ["hello world! мм цц"],
+        "Hello World! Мм Цц"
+    );
+    bench!(
+        "filter upper",
+        filter_upper,
+        ["HELLO WORLD! ММ ЦЦ"],
+        "Hello World! Мм Цц"
+    );
+
+    skipped
 }

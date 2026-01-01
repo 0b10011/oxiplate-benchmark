@@ -440,11 +440,119 @@ dependencies = [
 ]
 
 [[package]]
+name = "oxiplate"
+version = "0.10.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1f96a03c786064f437ac21fc7d2192a22a6e7eee2914729b33a3f3a12dc6c32b"
+dependencies = [
+ "itoa",
+ "oxiplate-derive 0.10.4",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.11.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f61326b49a355e5fb6d64a552dff4fd82651a428e5b37761457a9e49e7ee67c"
+dependencies = [
+ "oxiplate-derive 0.11.5",
+ "oxiplate-traits",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.12.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "01fe1696b5fad396971b5217971cb04bf73a51b96bdb1d86e3517ca99f54f567"
+dependencies = [
+ "oxiplate-derive 0.12.2",
+ "oxiplate-traits",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "377cf21ec45971f8bd36c8544bf96025dcfb5b3cb6eca3688188e18942401540"
+dependencies = [
+ "oxiplate-derive 0.13.0",
+ "oxiplate-traits",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "90bb46a96df485f597da9291dafe7f48e6d136eb6b2262ec301ee6de7e7c5d10"
+dependencies = [
+ "oxiplate-derive 0.14.0",
+ "oxiplate-traits",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.15.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "936e38e53eeba91d3a201d26b0e8485bf8d222aa8173fe4d0cd464e4d181bcca"
+dependencies = [
+ "oxiplate-derive 0.15.8",
+ "oxiplate-traits",
+]
+
+[[package]]
 name = "oxiplate-0-1"
 version = "0.1.0"
 dependencies = [
  "benchmark",
  "oxiplate 0.1.12",
+]
+
+[[package]]
+name = "oxiplate-0-10"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.10.4",
+]
+
+[[package]]
+name = "oxiplate-0-11"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.11.7",
+]
+
+[[package]]
+name = "oxiplate-0-12"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.12.2",
+]
+
+[[package]]
+name = "oxiplate-0-13"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.13.0",
+]
+
+[[package]]
+name = "oxiplate-0-14"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.14.0",
+]
+
+[[package]]
+name = "oxiplate-0-15"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.15.8",
 ]
 
 [[package]]
@@ -519,6 +627,12 @@ dependencies = [
  "benchmark",
  "criterion",
  "oxiplate-0-1",
+ "oxiplate-0-10",
+ "oxiplate-0-11",
+ "oxiplate-0-12",
+ "oxiplate-0-13",
+ "oxiplate-0-14",
+ "oxiplate-0-15",
  "oxiplate-0-2",
  "oxiplate-0-3",
  "oxiplate-0-4",
@@ -661,6 +775,105 @@ dependencies = [
  "serde",
  "syn",
  "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.10.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ba8f319f001fcee69369f58aadb1cb8d0c35bac1e16e5fc53423adb2c39d1ec4"
+dependencies = [
+ "nom 8.0.0",
+ "nom-language",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.11.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "62c5d0fd81fafb5bfe4c16ab91ad07242b54fb3e57f47986ce2fb87ba94ce3b3"
+dependencies = [
+ "nom 8.0.0",
+ "nom-language",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.12.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fbf2a7923c33a85d526893fdce4b3618839fdb34741f025b16d14f14a59d81a2"
+dependencies = [
+ "nom 8.0.0",
+ "nom-language",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bb9cd9fae25729085df738c4231c621485ca1ea87478decdd7be5f39e634603e"
+dependencies = [
+ "nom 8.0.0",
+ "nom-language",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c5d9b8daeb9bc337253fb9aeda954db16a9745c84cb12d70882bca98a1aa4ef1"
+dependencies = [
+ "nom 8.0.0",
+ "nom-language",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.15.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87ba002d0756a4d94736a5e811d5c03727d7e3ff98c2313b2bc242b40db549f6"
+dependencies = [
+ "nom 8.0.0",
+ "nom-language",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn",
+ "toml 0.9.5",
+]
+
+[[package]]
+name = "oxiplate-traits"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "acc3a672d7850066ef01d2b689e300242be3e2a45d5a5bb912e88b710a9c06f8"
+dependencies = [
+ "itoa",
 ]
 
 [[package]]

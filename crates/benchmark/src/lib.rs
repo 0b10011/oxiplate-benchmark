@@ -1,3 +1,9 @@
+pub enum Result {
+    Done,
+    Unimplemented,
+    ToDo,
+}
+
 pub trait Generator {
     type Output: Output;
 
@@ -6,19 +12,25 @@ pub trait Generator {
 
     /// A test of static output without any logic or variables.
     /// Simply outputs "hello world".
-    fn inline_text(&self, output: &mut Self::Output);
+    fn inline_text(&self, output: &mut Self::Output) -> Result;
 
     /// A test of variable output without any logic or static text.
     /// Simply outputs the variable as-is.
-    fn inline_variable(&self, output: &mut Self::Output, text: &str);
+    fn inline_variable(&self, output: &mut Self::Output, text: &str) -> Result;
 
     /// A benchmark of template extending performance.
     /// Main page should extend a layout template.
     /// See latest `oxiplate-*` benchmark for example.
-    fn extends(&self, output: &mut Self::Output, title: &str, visit_count: u64);
+    fn extends(&self, output: &mut Self::Output, title: &str, visit_count: u64) -> Result;
 
     /// A benchmark of outputting a loop of strings.
-    fn statement_for(&self, output: &mut Self::Output, values: Vec<&str>);
+    fn statement_for(&self, output: &mut Self::Output, values: Vec<&str>) -> Result;
+
+    /// A benchmark of the lowercase filter.
+    fn filter_lower(&self, output: &mut Self::Output, values: &str) -> Result;
+
+    /// A benchmark of the uppercase filter.
+    fn filter_upper(&self, output: &mut Self::Output, values: &str) -> Result;
 }
 
 pub trait Output: Default {
