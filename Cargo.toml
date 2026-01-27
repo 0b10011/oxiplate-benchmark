@@ -25,7 +25,8 @@ oxiplate-0-11 = { version = "*", path = "crates/oxiplate-0-11", optional = true 
 oxiplate-0-12 = { version = "*", path = "crates/oxiplate-0-12", optional = true }
 oxiplate-0-13 = { version = "*", path = "crates/oxiplate-0-13", optional = true }
 oxiplate-0-14 = { version = "*", path = "crates/oxiplate-0-14", optional = true }
-oxiplate-0-15 = { version = "*", path = "crates/oxiplate-0-15" }
+oxiplate-0-15 = { version = "*", path = "crates/oxiplate-0-15", optional = true }
+oxiplate-0-16 = { version = "*", path = "crates/oxiplate-0-16" }
 
 # Other libraries
 askama-latest = { version = "*", path = "crates/askama-latest", optional = true }
@@ -49,11 +50,12 @@ all-packages = [
     "dep:oxiplate-0-10",
     "dep:oxiplate-0-11",
     "dep:oxiplate-0-12",
+    "dep:oxiplate-0-13",
     "recent", 
     "other-libraries",
 ]
 recent = [
-    "dep:oxiplate-0-13",
     "dep:oxiplate-0-14",
+    "dep:oxiplate-0-15",
 ]
 other-libraries = ["dep:askama-latest"]

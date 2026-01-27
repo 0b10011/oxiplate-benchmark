@@ -42,11 +42,13 @@ fn run_part(c: &mut Criterion, part: Part, to_skip: Vec<(&str, &str)>) -> Vec<(&
         ("oxiplate-0.11", &oxiplate_0_11::Generator),
         #[cfg(feature = "all-packages")]
         ("oxiplate-0.12", &oxiplate_0_12::Generator),
-        #[cfg(feature = "recent")]
+        #[cfg(feature = "all-packages")]
         ("oxiplate-0.13", &oxiplate_0_13::Generator),
         #[cfg(feature = "recent")]
         ("oxiplate-0.14", &oxiplate_0_14::Generator),
+        #[cfg(feature = "recent")]
         ("oxiplate-0.15", &oxiplate_0_15::Generator),
+        ("oxiplate-0.16", &oxiplate_0_16::Generator),
     ];
     generators.reverse();
 
