@@ -5,4 +5,5 @@ edition = "2024"
 
 [dependencies]
 oxiplate = "0.1.0"
+oxiplate-derive = "0.1.0"
 benchmark = { version = "*", path = "../benchmark" }

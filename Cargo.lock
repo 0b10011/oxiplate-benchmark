@@ -58,7 +58,7 @@ dependencies = [
  "rustc-hash",
  "serde",
  "serde_derive",
- "syn",
+ "syn 2.0.114",
 ]
 
 [[package]]
@@ -275,9 +275,9 @@ dependencies = [
 
 [[package]]
 name = "itoa"
-version = "1.0.15"
+version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
+checksum = "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682"
 
 [[package]]
 name = "js-sys"
@@ -456,7 +456,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3f61326b49a355e5fb6d64a552dff4fd82651a428e5b37761457a9e49e7ee67c"
 dependencies = [
  "oxiplate-derive 0.11.5",
- "oxiplate-traits",
+ "oxiplate-traits 0.1.6",
 ]
 
 [[package]]
@@ -466,7 +466,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "01fe1696b5fad396971b5217971cb04bf73a51b96bdb1d86e3517ca99f54f567"
 dependencies = [
  "oxiplate-derive 0.12.2",
- "oxiplate-traits",
+ "oxiplate-traits 0.1.6",
 ]
 
 [[package]]
@@ -476,7 +476,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "377cf21ec45971f8bd36c8544bf96025dcfb5b3cb6eca3688188e18942401540"
 dependencies = [
  "oxiplate-derive 0.13.0",
- "oxiplate-traits",
+ "oxiplate-traits 0.1.6",
 ]
 
 [[package]]
@@ -486,7 +486,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90bb46a96df485f597da9291dafe7f48e6d136eb6b2262ec301ee6de7e7c5d10"
 dependencies = [
  "oxiplate-derive 0.14.0",
- "oxiplate-traits",
+ "oxiplate-traits 0.1.6",
 ]
 
 [[package]]
@@ -496,7 +496,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "936e38e53eeba91d3a201d26b0e8485bf8d222aa8173fe4d0cd464e4d181bcca"
 dependencies = [
  "oxiplate-derive 0.15.8",
- "oxiplate-traits",
+ "oxiplate-traits 0.1.6",
 ]
 
 [[package]]
@@ -506,7 +506,35 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6ae997f302fff6859e03f61e66301d1d870274141db565e386486333ea5a2fd3"
 dependencies = [
  "oxiplate-derive 0.16.1",
- "oxiplate-traits",
+ "oxiplate-traits 0.1.6",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.17.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1092ab9722b2a7f66b1aa14732ec6fe0705cbac0743c4495b2a6267e418a011"
+dependencies = [
+ "oxiplate-derive 0.17.1",
+ "oxiplate-traits 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.18.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f743dc34db6be9c3a4c553adfe8d7d149ca8e8b8115a8d1949cd42ddc3c95649"
+dependencies = [
+ "oxiplate-derive 0.18.1",
+ "oxiplate-traits 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "oxiplate"
+version = "0.19.0"
+dependencies = [
+ "oxiplate-derive 0.19.0",
+ "oxiplate-traits 0.2.2",
 ]
 
 [[package]]
@@ -515,6 +543,7 @@ version = "0.1.0"
 dependencies = [
  "benchmark",
  "oxiplate 0.1.12",
+ "oxiplate-derive 0.1.12",
 ]
 
 [[package]]
@@ -571,6 +600,30 @@ version = "0.1.0"
 dependencies = [
  "benchmark",
  "oxiplate 0.16.1",
+]
+
+[[package]]
+name = "oxiplate-0-17"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.17.1",
+]
+
+[[package]]
+name = "oxiplate-0-18"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.18.2",
+]
+
+[[package]]
+name = "oxiplate-0-19"
+version = "0.1.0"
+dependencies = [
+ "benchmark",
+ "oxiplate 0.19.0",
 ]
 
 [[package]]
@@ -652,6 +705,9 @@ dependencies = [
  "oxiplate-0-14",
  "oxiplate-0-15",
  "oxiplate-0-16",
+ "oxiplate-0-17",
+ "oxiplate-0-18",
+ "oxiplate-0-19",
  "oxiplate-0-2",
  "oxiplate-0-3",
  "oxiplate-0-4",
@@ -672,7 +728,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.8.23",
 ]
 
@@ -687,7 +743,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -702,7 +758,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -717,7 +773,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -732,7 +788,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -747,7 +803,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -762,7 +818,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -777,7 +833,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -792,7 +848,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -807,7 +863,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -822,7 +878,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -837,7 +893,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -852,7 +908,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -867,7 +923,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -882,7 +938,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
 ]
 
@@ -895,8 +951,39 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.114",
  "toml 0.9.11+spec-1.1.0",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.17.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "20226b6bfbc9b460c213ebcb481d08ee7ebf0338332bd41ae021fbd1153d2ff4"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.18.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b25a64b5ddef740ecdd7c182595d4afa619cf416cd9beed48864648b51bf7743"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.5",
+]
+
+[[package]]
+name = "oxiplate-derive"
+version = "0.19.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.5",
 ]
 
 [[package]]
@@ -904,6 +991,22 @@ name = "oxiplate-traits"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "acc3a672d7850066ef01d2b689e300242be3e2a45d5a5bb912e88b710a9c06f8"
+dependencies = [
+ "itoa",
+]
+
+[[package]]
+name = "oxiplate-traits"
+version = "0.2.2"
+dependencies = [
+ "itoa",
+]
+
+[[package]]
+name = "oxiplate-traits"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "09195d39bc696b194fb6a3a3e23b132b16bc0baea91ac42e932ec38b8a0aeb5f"
 dependencies = [
  "itoa",
 ]
@@ -953,9 +1056,9 @@ dependencies = [
 
 [[package]]
 name = "quote"
-version = "1.0.44"
+version = "1.0.47"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "21b2ebcf727b7760c461f091f9f0f539b77b8e87f2fd88131e7f1b433b3cece4"
+checksum = "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001"
 dependencies = [
  "proc-macro2",
 ]
@@ -1063,7 +1166,7 @@ checksum = "d540f220d3187173da220f885ab66608367b6574e925011a9353e4badda91d79"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.114",
 ]
 
 [[package]]
@@ -1101,6 +1204,17 @@ name = "syn"
 version = "2.0.114"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d4d107df263a3013ef9b1879b0df87d706ff80f65a86ea879bd9c31f9b307c2a"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-ident",
+]
+
+[[package]]
+name = "syn"
+version = "3.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "12df2e0110f65b775f769bb17ef989067a1d931b2eb822bd4346631eeada89f9"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1235,7 +1349,7 @@ dependencies = [
  "log",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.114",
  "wasm-bindgen-shared",
 ]
 
@@ -1257,7 +1371,7 @@ checksum = "8ae87ea40c9f689fc23f209965b6fb8a99ad69aeeb0231408be24920604395de"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.114",
  "wasm-bindgen-backend",
  "wasm-bindgen-shared",
 ]

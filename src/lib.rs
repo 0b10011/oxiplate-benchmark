@@ -14,7 +14,11 @@ pub fn run(c: &mut Criterion) {
     run_part(c, Part::Bench, to_skip);
 }
 
-fn run_part(c: &mut Criterion, part: Part, to_skip: Vec<(&str, &str)>) -> Vec<(&'static str, &'static str)> {
+fn run_part(
+    c: &mut Criterion,
+    part: Part,
+    to_skip: Vec<(&str, &str)>,
+) -> Vec<(&'static str, &'static str)> {
     let mut generators: [(&str, &dyn Generator<Output = _>); _] = [
         #[cfg(feature = "other-libraries")]
         ("askama-latest", &askama_latest::Generator),
@@ -44,11 +48,17 @@ fn run_part(c: &mut Criterion, part: Part, to_skip: Vec<(&str, &str)>) -> Vec<(&
         ("oxiplate-0.12", &oxiplate_0_12::Generator),
         #[cfg(feature = "all-packages")]
         ("oxiplate-0.13", &oxiplate_0_13::Generator),
-        #[cfg(feature = "recent")]
+        #[cfg(feature = "all-packages")]
         ("oxiplate-0.14", &oxiplate_0_14::Generator),
-        #[cfg(feature = "recent")]
+        #[cfg(feature = "all-packages")]
         ("oxiplate-0.15", &oxiplate_0_15::Generator),
+        #[cfg(feature = "all-packages")]
         ("oxiplate-0.16", &oxiplate_0_16::Generator),
+        #[cfg(feature = "recent")]
+        ("oxiplate-0.17", &oxiplate_0_17::Generator),
+        #[cfg(feature = "recent")]
+        ("oxiplate-0.18", &oxiplate_0_18::Generator),
+        ("oxiplate-0.19", &oxiplate_0_19::Generator),
     ];
     generators.reverse();
 

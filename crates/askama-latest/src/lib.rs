@@ -47,6 +47,8 @@ impl benchmark::Generator for Generator {
 
     #[inline]
     fn inline_text(&self, output: &mut Self::Output) -> benchmark::Result {
+        output.reserve(InlineText::SIZE_HINT);
+
         InlineText.render_into(output).unwrap();
 
         benchmark::Result::Done
@@ -54,6 +56,8 @@ impl benchmark::Generator for Generator {
 
     #[inline]
     fn inline_variable(&self, output: &mut Self::Output, text: &str) -> benchmark::Result {
+        output.reserve(InlineVariable::SIZE_HINT);
+
         InlineVariable {
             text,
         }.render_into(output).unwrap();
@@ -63,6 +67,8 @@ impl benchmark::Generator for Generator {
 
     #[inline]
     fn extends(&self, output: &mut Self::Output, title: &str, visitor_count: u64) -> benchmark::Result {
+        output.reserve(Extends::SIZE_HINT);
+
         Extends {
             title,
             visitor_count,
@@ -73,6 +79,8 @@ impl benchmark::Generator for Generator {
 
     #[inline]
     fn statement_for(&self, output: &mut Self::Output, values: Vec<&str>) -> benchmark::Result {
+        output.reserve(StatementFor::SIZE_HINT);
+
         StatementFor {
             values,
         }.render_into(output).unwrap();
@@ -81,6 +89,8 @@ impl benchmark::Generator for Generator {
     }
     
     fn filter_lower(&self, output: &mut Self::Output, value: &str) -> benchmark::Result {
+        output.reserve(FilterLower::SIZE_HINT);
+
         FilterLower {
             value,
         }.render_into(output).unwrap();
@@ -89,6 +99,8 @@ impl benchmark::Generator for Generator {
     }
     
     fn filter_upper(&self, output: &mut Self::Output, value: &str) -> benchmark::Result {
+        output.reserve(FilterUpper::SIZE_HINT);
+
         FilterUpper {
             value,
         }.render_into(output).unwrap();
