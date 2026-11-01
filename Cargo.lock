@@ -547,7 +547,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a1092ab9722b2a7f66b1aa14732ec6fe0705cbac0743c4495b2a6267e418a011"
 dependencies = [
  "oxiplate-derive 0.17.1",
- "oxiplate-traits 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "oxiplate-traits 0.2.4",
 ]
 
 [[package]]
@@ -557,12 +557,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f743dc34db6be9c3a4c553adfe8d7d149ca8e8b8115a8d1949cd42ddc3c95649"
 dependencies = [
  "oxiplate-derive 0.18.1",
- "oxiplate-traits 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "oxiplate-traits 0.2.4",
 ]
 
 [[package]]
 name = "oxiplate"
 version = "0.19.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d147f9bbfdf5a4413e044ca7ee46f09e2cfbee20740f074e954bfba2597e2b93"
 dependencies = [
  "oxiplate-derive 0.19.12",
  "oxiplate-traits 0.2.4",
@@ -1010,6 +1012,8 @@ dependencies = [
 [[package]]
 name = "oxiplate-derive"
 version = "0.19.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3e7bb97003db1cbd85524b3ed65322ea9fd9a9653e0b57dd553189c2f2ce19d8"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1021,13 +1025,6 @@ name = "oxiplate-traits"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9fd3be0a043a0836ce39bf9eb152b00ff8430c15da04fb39e46a697b123e7a6d"
-dependencies = [
- "itoa",
-]
-
-[[package]]
-name = "oxiplate-traits"
-version = "0.2.4"
 dependencies = [
  "itoa",
 ]
