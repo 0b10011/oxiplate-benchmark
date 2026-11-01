@@ -1,6 +1,14 @@
 pub enum Result {
+    /// Method is implemented and ran for this package.
+    /// Benchmark will proceed for this method + package.
     Done,
+
+    /// Method is not, and will not be, implemented for this package.
+    /// Benchmark for this method + package will be skipped for this run.
     Unimplemented,
+
+    /// Method is not yet, but will be, implemented for this package.
+    /// Benchmark for this method + package will be skipped for this run.
     ToDo,
 }
 
