@@ -1,3 +1,6 @@
+extern crate alloc;
+
+use alloc::borrow::Cow;
 use std::hint::black_box;
 
 use benchmark::Generator;
@@ -230,14 +233,28 @@ fn run_part(
     bench!(
         "filter lower",
         filter_lower,
-        ["hello world! мм цц"],
-        "Hello World! Мм Цц"
+        [
+            "hello world! мм цц yelling in excitement 19 whispering in anticipation some very \
+             important words that must each be capitalized"
+        ],
+        "Hello World! Мм Цц",
+        String::from("YELLING IN EXCITEMENT"),
+        19,
+        Box::new(String::from("whispering in anticipation")),
+        Cow::Borrowed("Some Very Important Words That Must Each Be Capitalized")
     );
     bench!(
         "filter upper",
         filter_upper,
-        ["HELLO WORLD! ММ ЦЦ"],
-        "Hello World! Мм Цц"
+        [
+            "HELLO WORLD! ММ ЦЦ YELLING IN EXCITEMENT 19 WHISPERING IN ANTICIPATION SOME VERY \
+             IMPORTANT WORDS THAT MUST EACH BE CAPITALIZED"
+        ],
+        "Hello World! Мм Цц",
+        String::from("YELLING IN EXCITEMENT"),
+        19,
+        Box::new(String::from("whispering in anticipation")),
+        Cow::Borrowed("Some Very Important Words That Must Each Be Capitalized")
     );
 
     skipped

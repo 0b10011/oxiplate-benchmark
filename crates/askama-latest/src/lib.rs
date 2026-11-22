@@ -1,3 +1,7 @@
+extern crate alloc;
+
+use alloc::borrow::Cow;
+
 use askama::Template;
 
 pub struct Generator;
@@ -26,15 +30,23 @@ struct StatementFor<'a> {
 }
 
 #[derive(Template)]
-#[template(source = "{{ value | lower }}", ext = "html")]
+#[template(source = "{{ a | lower }} {{ b | lower }} {{ c | lower }} {{ d | lower }} {{ e | lower }}", ext = "html")]
 struct FilterLower<'a> {
-    value: &'a str,
+    a: &'a str,
+    b: String,
+    c: usize,
+    d: Box<String>,
+    e: Cow<'a, str>,
 }
 
 #[derive(Template)]
-#[template(source = "{{ value | upper }}", ext = "html")]
+#[template(source = "{{ a | upper }} {{ b | upper }} {{ c | upper }} {{ d | upper }} {{ e | upper }}", ext = "html")]
 struct FilterUpper<'a> {
-    value: &'a str,
+    a: &'a str,
+    b: String,
+    c: usize,
+    d: Box<String>,
+    e: Cow<'a, str>,
 }
 
 impl benchmark::Generator for Generator {
@@ -88,21 +100,29 @@ impl benchmark::Generator for Generator {
         benchmark::Result::Done
     }
     
-    fn filter_lower(&self, output: &mut Self::Output, value: &str) -> benchmark::Result {
+    fn filter_lower(&self, output: &mut Self::Output, a: &str, b: String, c: usize, d: Box<String>, e: Cow<str>) -> benchmark::Result {
         output.reserve(FilterLower::SIZE_HINT);
 
         FilterLower {
-            value,
+            a,
+            b,
+            c,
+            d,
+            e,
         }.render_into(output).unwrap();
 
         benchmark::Result::Done
     }
     
-    fn filter_upper(&self, output: &mut Self::Output, value: &str) -> benchmark::Result {
+    fn filter_upper(&self, output: &mut Self::Output, a: &str, b: String, c: usize, d: Box<String>, e: Cow<str>) -> benchmark::Result {
         output.reserve(FilterUpper::SIZE_HINT);
 
         FilterUpper {
-            value,
+            a,
+            b,
+            c,
+            d,
+            e,
         }.render_into(output).unwrap();
 
         benchmark::Result::Done

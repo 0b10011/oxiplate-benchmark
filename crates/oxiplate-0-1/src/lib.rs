@@ -1,3 +1,6 @@
+extern crate alloc;
+
+use alloc::borrow::Cow;
 use std::fmt::Write;
 
 use oxiplate::Oxiplate;
@@ -71,12 +74,12 @@ impl benchmark::Generator for Generator {
     }
 
     #[inline]
-    fn filter_lower(&self, _output: &mut Self::Output, _value: &str) -> benchmark::Result {
+    fn filter_lower(&self, _output: &mut Self::Output, _a: &str, _b: String, _c: usize, _d: Box<String>, _e: Cow<str>) -> benchmark::Result {
         benchmark::Result::Unimplemented
     }
 
     #[inline]
-    fn filter_upper(&self, _output: &mut Self::Output, _value: &str) -> benchmark::Result {
+    fn filter_upper(&self, _output: &mut Self::Output, _a: &str, _b: String, _c: usize, _d: Box<String>, _e: Cow<str>) -> benchmark::Result {
         benchmark::Result::Unimplemented
     }
 }

@@ -1,3 +1,7 @@
+extern crate alloc;
+
+use alloc::borrow::Cow;
+
 pub enum Result {
     /// Method is implemented and ran for this package.
     /// Benchmark will proceed for this method + package.
@@ -35,10 +39,10 @@ pub trait Generator {
     fn statement_for(&self, output: &mut Self::Output, values: Vec<&str>) -> Result;
 
     /// A benchmark of the lowercase filter.
-    fn filter_lower(&self, output: &mut Self::Output, values: &str) -> Result;
+    fn filter_lower(&self, output: &mut Self::Output, a: &str, b: String, c: usize, d: Box<String>, e: Cow<str>) -> Result;
 
     /// A benchmark of the uppercase filter.
-    fn filter_upper(&self, output: &mut Self::Output, values: &str) -> Result;
+    fn filter_upper(&self, output: &mut Self::Output, a: &str, b: String, c: usize, d: Box<String>, e: Cow<str>) -> Result;
 }
 
 pub trait Output: Default {

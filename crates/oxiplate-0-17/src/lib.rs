@@ -1,4 +1,7 @@
-use oxiplate::{prelude::*};
+extern crate alloc;
+
+use alloc::borrow::Cow;
+use oxiplate::prelude::*;
 
 pub struct Generator;
 
@@ -26,15 +29,23 @@ struct StatementFor<'a> {
 }
 
 #[derive(Oxiplate)]
-#[oxiplate_inline(html: "{{ >value | lower }}")]
+#[oxiplate_inline(html: "{{ >a | lower }} {{ >b | lower }} {{ >c | lower }} {{ >d | lower }} {{ >e | lower }}")]
 struct Lower<'a> {
-    value: &'a str,
+    a: &'a str,
+    b: String,
+    c: usize,
+    d: Box<String>,
+    e: Cow<'a, str>,
 }
 
 #[derive(Oxiplate)]
-#[oxiplate_inline(html: "{{ >value | upper }}")]
+#[oxiplate_inline(html: "{{ >a | upper }} {{ >b | upper }} {{ >c | upper }} {{ >d | upper }} {{ >e | upper }}")]
 struct Upper<'a> {
-    value: &'a str,
+    a: &'a str,
+    b: String,
+    c: usize,
+    d: Box<String>,
+    e: Cow<'a, str>,
 }
 
 impl benchmark::Generator for Generator {
@@ -81,18 +92,30 @@ impl benchmark::Generator for Generator {
     }
 
     #[inline]
-    fn filter_lower(&self, output: &mut Self::Output, value: &str) -> benchmark::Result {
+    fn filter_lower(&self, output: &mut Self::Output, a: &str, b: String, c: usize, d: Box<String>, e: Cow<str>) -> benchmark::Result {
+        output.reserve(Lower::ESTIMATED_LENGTH);
+
         Lower {
-            value,
+            a,
+            b,
+            c,
+            d,
+            e,
         }.render_into(output).unwrap();
 
         benchmark::Result::Done
     }
 
     #[inline]
-    fn filter_upper(&self, output: &mut Self::Output, value: &str) -> benchmark::Result {
+    fn filter_upper(&self, output: &mut Self::Output, a: &str, b: String, c: usize, d: Box<String>, e: Cow<str>) -> benchmark::Result {
+        output.reserve(Upper::ESTIMATED_LENGTH);
+
         Upper {
-            value,
+            a,
+            b,
+            c,
+            d,
+            e,
         }.render_into(output).unwrap();
 
         benchmark::Result::Done
