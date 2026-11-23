@@ -57,11 +57,13 @@ fn run_part(
         ("oxiplate-0.15", &oxiplate_0_15::Generator),
         #[cfg(feature = "all-packages")]
         ("oxiplate-0.16", &oxiplate_0_16::Generator),
-        #[cfg(feature = "recent")]
+        #[cfg(feature = "all-packages")]
         ("oxiplate-0.17", &oxiplate_0_17::Generator),
         #[cfg(feature = "recent")]
         ("oxiplate-0.18", &oxiplate_0_18::Generator),
+        #[cfg(feature = "recent")]
         ("oxiplate-0.19", &oxiplate_0_19::Generator),
+        ("oxiplate-0.20", &oxiplate_0_20::Generator),
     ];
     generators.reverse();
 
